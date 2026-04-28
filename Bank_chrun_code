@@ -412,6 +412,18 @@ plt.show()
 print("SHAP waterfall plot saved as shap_waterfall_customer0.png")
 
 
+from sklearn.metrics import ConfusionMatrixDisplay, confusion_matrix
+
+cm = confusion_matrix(y_test, y_pred_tuned)
+disp = ConfusionMatrixDisplay(confusion_matrix=cm,
+                               display_labels=["Not Churned", "Churned"])
+disp.plot(cmap="Blues")
+plt.title(f"Confusion Matrix (Threshold = {best_threshold:.2f})")
+plt.tight_layout()
+plt.savefig("confusion_matrix.png", dpi=150, bbox_inches="tight")
+plt.show()
+
+
 # =============================================================================
 # 10. FINAL SUMMARY
 # =============================================================================
